@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {getItems} from '../actions/';
+import {getItems, deleteItem} from '../actions/';
 import ListItem from './list_item';
 
 class List extends Component {
+  constructor(props){
+    super(props);
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+
   componentDidMount(){
     this.props.getItems();
   }
 
+  handleDelete(id){
+    console.log('in handleDelete',this.props);
+    this.props.deleteItem(id).then(()=>{
+      this.props.getItems();
+    })
+  }
+
   render() {
     const listItems = this.props.list.map((item, index)=>{
-      return <ListItem key={index} {...item}/>
+      return <ListItem key={index} {...item} delete={this.handleDelete}/>
     })
 
     return (
@@ -33,4 +47,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {getItems})(List);
+export default connect(mapStateToProps, {getItems,deleteItem})(List);
