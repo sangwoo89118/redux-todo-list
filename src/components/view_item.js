@@ -15,13 +15,14 @@ class ViewItem extends Component {
       return <h1>Loading..</h1>
     }
 
-    console.log('View Item Props:', this.props);
+
     return (
       <div>
         <div className="row my-4 justify-content-end">
           <Link className="btn btn-outline-primary" to='/'>Back</Link>
         </div>
         <h1 className='text-center'>View Item: {this.props.single.title}</h1>
+        <h3 className='text-center'>Details: {this.props.single.details}</h3>
       </div>
     );
   }

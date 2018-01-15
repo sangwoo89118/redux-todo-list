@@ -41,6 +41,15 @@ export function deleteItem(id){
   }
 }
 
+export function toggleItem(id){
+  const request = axios.put(BASE_URL + '/todos/'+ id + API_KEY);
+
+  return{
+    type: types.TOGGLE_ITEM,
+    payload: request
+  }
+}
+
 /*
 axios.delete('http://api.reactprototypes.com/todos/[id#]?key=[your API key]  ---- delete
 
