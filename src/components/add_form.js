@@ -17,11 +17,11 @@ class AddForm extends Component {
   }
 
   handleAddItem(values){
-    console.log('Form Submitted with:', values);
 
-    this.props.addItem(values);
 
-    this.props.history.push('/');
+    this.props.addItem(values).then( ()=> {
+      this.props.history.push('/');
+    });
   }
 
 

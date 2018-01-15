@@ -1,28 +1,17 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE={
-  list:[
-    {
-      title: 'Make to do list',
-      details: 'Build it in react with redux'
-    },
-    {
-      title: 'Udacity with Google',
-      details: 'Finish lesson 4 this week'
-    },
-    {
-      title: 'Portpolio',
-      details: 'Start work on Portpolio'
-    }
-  ]
+  list:[],
+  single: null,
 }
 
 
 export default function(state=DEFAULT_STATE, action){
   switch(action.type){
-    case types.ADD_ITEM:
-      return { list: [action.payload, ...state.list]}
-
+    case types.GET_ITEMS:
+      return { ...state, list: action.payload.data.todos};
+    case types.GET_SINGLE_ITEM:
+      return {...state, single: action.payload.data.todo};
     default:
       return state;
   }
